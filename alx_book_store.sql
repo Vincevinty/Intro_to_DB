@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS Orders (
 );
 
 # Create Order_details Table
-CREATE TABLE IF NOT EXISTS Order_details (
-    order_detail_id INT AUTO INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Order_Details (
+    order_etail_id INT AUTO INCREMENT PRIMARY KEY,
     order_id INT,
     book_id INT,
     quantity DOUBLE,
