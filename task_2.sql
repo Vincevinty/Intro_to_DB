@@ -1,50 +1,45 @@
--- Create the database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS alx_book_store;
-USE alx_book_store;
+# Create DATABASE
+CREATE DATABASE IF NOT EXISTS alx_book_stores;
+USE alx_book_stores;
 
--- Authors table
-CREATE TABLE Authors (
-    author_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    bio TEXT
+# Create Authors Table
+CREATE TABLE IF NOT EXISTS Authors (
+    auhor_id INT AUTO INCREMENT PRIMARY KEY,
+    author_name VARCHAR(215) NOT NULL
 );
 
--- Books table
-CREATE TABLE Books (
-   book_id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(150) NOT NULL,
-    genre VARCHAR(50),
-    price DECIMAL(10,2) NOT NULL,
-    stock INT DEFAULT 0,
+# Create Books Table
+CREATE TABLE IF NOT EXISTS Books (
+    book_id INT AUTO INCREMENT PRIMARY KEY,
+    title VARCHAR(130) NOT NULL,
     author_id INT,
+    price DOUBLE,
+    publication_date DATE,
     FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
--- Customers table
-CREATE TABLE Customers (
-    CUSTOMER_ID INT AUTO_INCREMENT PRIMARY KEY,
-    NAME VARCHAR(100) NOT NULL,
-    EMAIL VARCHAR(100) UNIQUE,
-    PHONE VARCHAR(20),
-    ADDRESS TEXT
+# Create Customers Table
+CREATE TABLE IF NOT EXISTS Customers (
+    customer_id INT AUTO INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(215) NOT NULL,
+    email VARCHAR(215) UNIQUE NOT NULL,
+    address TEXT
 );
 
--- Orders table
-CREATE TABLE Orders (
-    ORDER_ID INT AUTO_INCREMENT PRIMARY KEY,
-    CUSTOMER_ID INT,
-    ORDER_DATE DATE NOT NULL,
-    STATUS VARCHAR(50) DEFAULT 'PENDING',
-    FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID)
+# Create Orders Table
+CREATE TABLE IF NOT EXISTS Orders (
+    order_id INT AUTO INCREMENT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
 );
 
--- Order Details table
-CREATE TABLE Order_Details (
-    ORDER_DETAIL_ID INT AUTO_INCREMENT PRIMARY KEY,
-    ORDER_ID INT,
-    BOOK_ID INT,
-    QUANTITY INT NOT NULL,
-    SUBTOTAL DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ORDER_ID),
-    FOREIGN KEY (BOOK_ID) REFERENCES BOOKS(BOOK_ID)
+# Create Order_details Table
+CREATE TABLE IF NOT EXISTS Order_Details (
+    order_etail_id INT AUTO INCREMENT PRIMARY KEY,
+    order_id INT,
+    book_id INT,
+    quantity DOUBLE,
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
