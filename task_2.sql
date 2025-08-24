@@ -4,20 +4,20 @@ USE alx_book_store;
 
 -- Authors table
 CREATE TABLE Authors (
-    AUTHOR_ID INT AUTO_INCREMENT PRIMARY KEY,
-    NAME VARCHAR(100) NOT NULL,
-    BIO TEXT
+    author_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    bio TEXT
 );
 
 -- Books table
 CREATE TABLE Books (
-    BOOK_ID INT AUTO_INCREMENT PRIMARY KEY,
-    TITLE VARCHAR(150) NOT NULL,
-    GENRE VARCHAR(50),
-    PRICE DECIMAL(10,2) NOT NULL,
-    STOCK INT DEFAULT 0,
-    AUTHOR_ID INT,
-    FOREIGN KEY (AUTHOR_ID) REFERENCES AUTHORS(AUTHOR_ID)
+   book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    genre VARCHAR(50),
+    price DECIMAL(10,2) NOT NULL,
+    stock INT DEFAULT 0,
+    author_id INT,
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
 -- Customers table
